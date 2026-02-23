@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* ── Light theme (default) ── */
+:root {
+  --color-bg: #F6F7FB;
+  --color-surface1: #FFFFFF;
+  --color-surface2: #F1F3F8;
+  --color-text: #0C0F17;
+  --color-muted: #667085;
+  --color-border: #E6E8EF;
+  --color-primary: #2F5BFF;
+  --color-success: #00C2A8;
+  --color-warning: #FFB020;
+  --color-danger: #FF3B30;
+  --color-pending: #8B95A7;
+
+  --radius-card: 14px;
+  --radius-control: 12px;
+  --radius-chip: 999px;
+}
+
+/* ── Dark theme ── */
+[data-theme="dark"] {
+  --color-bg: #0B0F17;
+  --color-surface1: #121826;
+  --color-surface2: #0F1420;
+  --color-text: #E9ECF5;
+  --color-muted: #A2ACBC;
+  --color-border: #232C3C;
+  --color-primary: #4C74FF;
+  --color-success: #00C2A8;
+  --color-warning: #FFB020;
+  --color-danger: #FF5C5C;
+  --color-pending: #8B95A7;
+}
+
+/* ── Tailwind v4 @theme ── */
+@theme {
+  --color-bg: var(--color-bg);
+  --color-surface1: var(--color-surface1);
+  --color-surface2: var(--color-surface2);
+  --color-text: var(--color-text);
+  --color-muted: var(--color-muted);
+  --color-border: var(--color-border);
+  --color-primary: var(--color-primary);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-danger: var(--color-danger);
+  --color-pending: var(--color-pending);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
