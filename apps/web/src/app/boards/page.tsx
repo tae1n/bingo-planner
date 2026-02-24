@@ -100,20 +100,20 @@ export default function BoardsPage() {
   const reviewBoards = boards.filter((b) => b.role === 'REVIEWER');
 
   return (
-    <main className="min-h-dvh bg-bg p-6">
+    <main className="min-h-dvh bg-bg px-4 py-4 sm:p-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h1 className="text-3xl font-bold text-primary">보드 목록</h1>
-            {user && (
-              <p className="text-sm text-muted mt-1">{user.nickname}님 환영합니다</p>
-            )}
+        <div className="mb-6">
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl sm:text-3xl font-bold text-primary">보드 목록</h1>
+            <div className="flex gap-2">
+              <Button size="sm" onClick={() => setShowModal(true)}>새 보드</Button>
+              <Button variant="secondary" size="sm" onClick={handleLogout}>로그아웃</Button>
+            </div>
           </div>
-          <div className="flex gap-3">
-            <Button onClick={() => setShowModal(true)}>새 보드 만들기</Button>
-            <Button variant="secondary" onClick={handleLogout}>로그아웃</Button>
-          </div>
+          {user && (
+            <p className="text-sm text-muted mt-1">{user.nickname}님 환영합니다</p>
+          )}
         </div>
 
         {loading ? (

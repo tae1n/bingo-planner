@@ -246,27 +246,27 @@ export default function BoardDetailPage() {
   const bingoLines = calculateBingoLines(board.items, board.size);
 
   return (
-    <main className="min-h-dvh bg-bg p-6">
+    <main className="min-h-dvh bg-bg px-4 py-4 sm:p-6">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <button
-              onClick={() => router.push('/boards')}
-              className="text-sm text-muted hover:text-primary mb-2"
-            >
-              &larr; 목록으로
-            </button>
-            <h1 className="text-3xl font-bold text-text">{board.title}</h1>
-            {board.description && <p className="text-muted mt-1">{board.description}</p>}
-          </div>
-          <div className="flex items-center gap-3">
+        <div className="mb-4">
+          <button
+            onClick={() => router.push('/boards')}
+            className="text-sm text-muted hover:text-primary mb-2"
+          >
+            &larr; 목록으로
+          </button>
+          <div className="flex items-center gap-2 flex-wrap">
+            <h1 className="text-2xl sm:text-3xl font-bold text-text mr-auto">{board.title}</h1>
             {isOwner && (
               <>
                 <Button variant="secondary" size="sm" onClick={() => setShowEditBoardModal(true)}>수정</Button>
                 <Button variant="danger" size="sm" onClick={() => setShowDeleteConfirm(true)}>삭제</Button>
               </>
             )}
+          </div>
+          {board.description && <p className="text-muted text-sm mt-1">{board.description}</p>}
+          <div className="flex items-center gap-2 mt-2">
             <span className="text-xs px-2 py-0.5 rounded-[var(--radius-chip)] bg-primary/15 text-primary">
               {board.size}x{board.size}
             </span>

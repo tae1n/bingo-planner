@@ -43,7 +43,7 @@ export default function BingoGrid({
 
   return (
     <div
-      className="grid gap-2"
+      className="grid gap-1.5 sm:gap-2"
       style={{ gridTemplateColumns: `repeat(${size}, 1fr)` }}
     >
       {Array.from({ length: totalCells }, (_, i) => {
