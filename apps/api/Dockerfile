@@ -12,7 +12,7 @@ COPY apps/api ./apps/api
 RUN pnpm --filter @bingo-planner/shared build
 RUN cd apps/api && npx prisma generate
 RUN pnpm --filter @bingo-planner/api build
-RUN pnpm deploy --filter @bingo-planner/api --prod /prod/api
+RUN pnpm deploy --filter @bingo-planner/api --prod --legacy /prod/api
 
 FROM base AS production
 WORKDIR /app
