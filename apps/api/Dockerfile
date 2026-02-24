@@ -13,7 +13,7 @@ RUN pnpm --filter @bingo-planner/shared build
 RUN cd apps/api && npx prisma generate
 RUN pnpm --filter @bingo-planner/api build
 RUN pnpm deploy --filter @bingo-planner/api --prod --legacy /prod/api
-RUN cd /prod/api && npx prisma generate --schema=/app/apps/api/prisma/schema.prisma
+RUN cp -rL /app/node_modules/.pnpm/@prisma+client@*/node_modules/.prisma /prod/api/node_modules/.prisma
 
 FROM node:20-alpine AS production
 WORKDIR /app
