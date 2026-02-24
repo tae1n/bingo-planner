@@ -12,12 +12,13 @@ COPY apps/api ./apps/api
 RUN pnpm --filter @bingo-planner/shared build
 RUN cd apps/api && npx prisma generate
 RUN pnpm --filter @bingo-planner/api build
+RUN pnpm deploy --filter @bingo-planner/api --prod /prod/api
 
 FROM base AS production
 WORKDIR /app
-COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /prod/api/node_modules ./node_modules
 COPY --from=build /app/apps/api/dist ./dist
 COPY --from=build /app/apps/api/prisma ./prisma
-COPY --from=build /app/apps/api/package.json ./
+COPY --from=build /prod/api/package.json ./
 EXPOSE 4000
 CMD ["node", "dist/main"]
