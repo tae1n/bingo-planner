@@ -8,11 +8,6 @@ export const metadata: Metadata = {
   title: 'Bingo Planner',
   description: '목표를 빙고 보드로 관리하는 플래너',
   manifest: '/manifest.json',
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: 'default',
-    title: 'Bingo Planner',
-  },
 };
 
 export const viewport: Viewport = {
