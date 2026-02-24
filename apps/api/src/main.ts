@@ -11,7 +11,7 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'uploads'), { prefix: '/uploads' });
 
   app.setGlobalPrefix('api/v1');
-  app.enableCors();
+  app.enableCors({ origin: process.env.CORS_ORIGIN || '*' });
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
