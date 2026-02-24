@@ -20,5 +20,6 @@ COPY --from=build /prod/api/node_modules ./node_modules
 COPY --from=build /app/apps/api/dist ./dist
 COPY --from=build /app/apps/api/prisma ./prisma
 COPY --from=build /prod/api/package.json ./
+RUN npx prisma generate
 EXPOSE 4000
 CMD ["node", "dist/main"]
