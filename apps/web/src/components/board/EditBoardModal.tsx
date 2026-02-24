@@ -66,8 +66,10 @@ export default function EditBoardModal({
             className="w-full px-4 py-2 bg-surface2 border border-border rounded-[var(--radius-control)] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none"
           />
         </div>
-        <Input label="시작일" type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-        <Input label="종료일" type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+        <div className="grid grid-cols-2 gap-3">
+          <Input label="시작일" type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+          <Input label="종료일" type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+        </div>
       </div>
     </Modal>
   );

@@ -57,3 +57,10 @@
 input, select, textarea {
   font-size: 16px;
 }
+
+/* iOS date input: 기본 너비가 콘텐츠에 맞춰지는 문제 방지 */
+input[type="date"],
+input[type="datetime-local"] {
+  min-width: 0;
+  width: 100%;
+}
