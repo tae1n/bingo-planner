@@ -52,3 +52,8 @@
 .safe-area-bottom {
   padding-bottom: env(safe-area-inset-bottom);
 }
+
+/* iOS PWA: 16px 미만 input은 키보드/줌 이슈 발생 */
+input, select, textarea {
+  font-size: 16px;
+}
