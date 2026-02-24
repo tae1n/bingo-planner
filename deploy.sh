@@ -6,7 +6,20 @@ echo "=== Bingo Planner Deploy ==="
 # Check Docker
 if ! command -v docker &> /dev/null; then
   echo "Installing Docker..."
-  curl -fsSL https://get.docker.com | sh
+  if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    case "$ID" in
+      amzn)
+        sudo yum install -y docker
+        sudo systemctl enable docker && sudo systemctl start docker
+        ;;
+      *)
+        curl -fsSL https://get.docker.com | sh
+        ;;
+    esac
+  else
+    curl -fsSL https://get.docker.com | sh
+  fi
   sudo usermod -aG docker "$USER"
   echo "Docker installed. Please log out and back in, then re-run this script."
   exit 1
@@ -15,7 +28,22 @@ fi
 # Check Docker Compose (v2 plugin)
 if ! docker compose version &> /dev/null; then
   echo "Installing Docker Compose plugin..."
-  sudo apt-get update && sudo apt-get install -y docker-compose-plugin
+  if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    case "$ID" in
+      amzn)
+        sudo mkdir -p /usr/local/lib/docker/cli-plugins
+        sudo curl -SL "https://github.com/docker/compose/releases/latest/download/docker-compose-linux-$(uname -m)" \
+          -o /usr/local/lib/docker/cli-plugins/docker-compose
+        sudo chmod +x /usr/local/lib/docker/cli-plugins/docker-compose
+        ;;
+      *)
+        sudo apt-get update && sudo apt-get install -y docker-compose-plugin
+        ;;
+    esac
+  else
+    sudo apt-get update && sudo apt-get install -y docker-compose-plugin
+  fi
 fi
 
 # Check .env file
