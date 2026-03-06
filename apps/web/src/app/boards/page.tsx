@@ -48,7 +48,7 @@ export default function BoardsPage() {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [newTitle, setNewTitle] = useState('');
-  const [newSize, setNewSize] = useState(5);
+  const [newSize, setNewSize] = useState(3);
   const [creating, setCreating] = useState(false);
 
   useEffect(() => {
@@ -80,7 +80,7 @@ export default function BoardsPage() {
       });
       setShowModal(false);
       setNewTitle('');
-      setNewSize(5);
+      setNewSize(3);
       await fetchBoards();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : '오류가 발생했습니다');
@@ -178,19 +178,27 @@ export default function BoardsPage() {
               onChange={(e) => setNewTitle(e.target.value)}
               className="px-4 py-3 bg-surface2 border border-border rounded-[var(--radius-control)] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
             />
-            <label className="text-sm text-muted">
-              사이즈
-              <select
-                value={newSize}
-                onChange={(e) => setNewSize(Number(e.target.value))}
-                className="ml-2 px-3 py-2 bg-surface2 border border-border rounded-[var(--radius-control)] focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-              >
-                <option value={3}>3x3</option>
-                <option value={5}>5x5</option>
-                <option value={7}>7x7</option>
-                <option value={9}>9x9</option>
-              </select>
-            </label>
+            <div>
+              <label className="text-sm text-muted block mb-1">사이즈</label>
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => setNewSize((s) => Math.max(1, s - 1))}
+                  className="w-10 h-10 flex items-center justify-center rounded-[var(--radius-control)] bg-surface2 border border-border text-lg font-bold text-text hover:bg-primary/10 transition"
+                >
+                  −
+                </button>
+                <span className="text-lg font-semibold text-text w-8 text-center">{newSize}</span>
+                <button
+                  type="button"
+                  onClick={() => setNewSize((s) => Math.min(5, s + 1))}
+                  className="w-10 h-10 flex items-center justify-center rounded-[var(--radius-control)] bg-surface2 border border-border text-lg font-bold text-text hover:bg-primary/10 transition"
+                >
+                  +
+                </button>
+                <span className="text-sm text-muted">{newSize}x{newSize} ({newSize * newSize}칸)</span>
+              </div>
+            </div>
           </div>
         </Modal>
       )}
